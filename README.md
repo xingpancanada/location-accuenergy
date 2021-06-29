@@ -1,6 +1,10 @@
 # location-accuenergy
 
 
+![image](https://user-images.githubusercontent.com/55171208/123828192-42792e80-d8cf-11eb-9a9e-d14c6e36701b.png)
+
+
+
 1, When you open this application, it shows your current location on the Google map. And the information div shows the current address with formatted address, local time and timestamp. The input frame shows your current address, too.
 
 
