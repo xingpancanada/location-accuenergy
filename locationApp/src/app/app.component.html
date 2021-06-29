@@ -1,0 +1,25 @@
+<div class="container col-sm-9 justify-content-center">
+  <h3>Location App for Web Developer Pre-interview</h3>
+  <br/>
+
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="mapReadyHandler($event)">
+    <agm-marker @markedState [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+
+  <br/>
+
+  <input class="inputAddress" @markedState ngx-google-places-autocomplete [value]="formattedAddress" #placesRef="ngx-places" (onAddressChange)="addressChange($event)"/>
+
+  <hr>
+
+  <!--show the address that is chosen-->
+  <div class="show" @showState>
+    <p><b>Address: </b>{{ formattedAddress }}</p>
+    <p><b>Local Time:</b> {{ this.localTime }}</p>
+    <p><b>Timestamp:</b> {{ this.timestamp }}</p>
+  </div>
+  
+</div>
+
+<router-outlet></router-outlet>
+
