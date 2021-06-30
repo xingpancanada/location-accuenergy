@@ -1,9 +1,6 @@
 import { Component, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { MapsAPILoader } from '@agm/core';
-import { Observable } from 'rxjs';
-import { NgForm } from '@angular/forms';
-import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { markedStateTrigger, showStateTrigger } from './animations';
 
 var tzlookup = require("tz-lookup");
@@ -17,10 +14,10 @@ var moment = require('moment-timezone');
 })
 export class AppComponent implements OnInit, OnDestroy{
   title = 'locationApp';
-  lat = 51.678418;
-  lng = 7.809007;
+  lat = 43.8075392;
+  lng = -79.233024;
   map: any;
-  zoom = 10;
+  zoom: any = 12;
   mapClickListener: any;
   locationChosen: boolean = false;
  
@@ -31,7 +28,6 @@ export class AppComponent implements OnInit, OnDestroy{
   timestamp: any;
   geoCoder: any;
   timezone: string;
-  //latitude: 43.8075392//longitude: -79.233024//timestamp: 1624942575746
 
   marked: boolean = false;
 
@@ -63,6 +59,7 @@ export class AppComponent implements OnInit, OnDestroy{
   showPosition(position: any) {
     this.lat = position.coords.latitude;
     this.lng = position.coords.longitude;
+    this.changeMapZoom(15);
     this.timezone = tzlookup(this.lat, this.lng);
     console.log(this.timezone);
     this.localTime = moment.tz(this.timestamp, this.timezone).format();
@@ -77,7 +74,7 @@ export class AppComponent implements OnInit, OnDestroy{
   //handle the address input change
   public addressChange(address: Address) {
     this.formattedAddress = address.formatted_address;
-    this.zoom = 12;
+    
     this.lat = address.geometry.location.lat();
     this.lng = address.geometry.location.lng();
     this.getAddress(this.lat, this.lng);
@@ -86,6 +83,8 @@ export class AppComponent implements OnInit, OnDestroy{
     console.log(this.timezone);
     this.localTime = moment.tz(this.timestamp, this.timezone).format();
     console.log(this.localTime);
+
+    this.changeMapZoom(15);
     
     console.log(address);
     console.log(this.formattedAddress);
@@ -134,6 +133,10 @@ export class AppComponent implements OnInit, OnDestroy{
         console.log(this.localTime);
       });
     });
+  }
+
+  changeMapZoom(e: any){
+    this.zoom = e;
   }
   
   

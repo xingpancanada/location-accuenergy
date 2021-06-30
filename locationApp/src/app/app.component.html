@@ -2,7 +2,7 @@
   <h3>Location App for Web Developer Pre-interview</h3>
   <br/>
 
-  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="mapReadyHandler($event)">
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (zoomChange)="changeMapZoom($event)" (mapReady)="mapReadyHandler($event)">
     <agm-marker @markedState [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>
 
